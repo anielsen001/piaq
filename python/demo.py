@@ -50,7 +50,6 @@ with open(logfile,'w') as f:
 # sleep before starting to settle
 time.sleep(1)
 
-
 with open(logfile,'a') as f:
     while True:
 
@@ -70,9 +69,13 @@ with open(logfile,'a') as f:
 
             print( ','.join(msgparts))
             f.write(','.join(msgparts) + '\n')
+        except RuntimeError:
+            # this occured when an invalid checksum was received from the PM2.5 sensor
+            # we just skip the error and keep going
+            pass
         except OSError:
-	    # if we get an os error, pause just skip
-            
+            # this occured when the PM2.5 was not ready 
+	    # if we get an os error, just skip
             pass
         
         #print("\nTemperature: %0.1f C" % bmp280.temperature)
