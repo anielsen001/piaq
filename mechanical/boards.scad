@@ -79,5 +79,15 @@ module SCD30_board(){
     }
 }
 
+/* this is the Plantower 2.5 particulate matter sensor
+*/  
+module plantower_pm25(){
+    x = 21.15;
+    y = 30.8;
+    z = 50.025;
+    color("blue") cube([x,y,z]);
+}
+
 board_pi_zero_w();
-translate([0,35,0])SCD30_board();
+translate([60,35,0])rotate([0,0,90]) SCD30_board();
+translate([31,40,0]) rotate([0,0,90]) plantower_pm25();
