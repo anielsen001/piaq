@@ -1,4 +1,11 @@
 pi_pcb_thick = 1.6; 
+pi_x = 65.0; 
+pi_y = 30.0; 
+pi_thru_hole_offset = 3.5; 
+
+pm25_x = 21.5; 
+pm25_y = 30.8;
+pm25_z = 50.025; 
 
 inch2mm = 25.4;
 
@@ -9,15 +16,24 @@ inch2mm = 25.4;
  * 
  */
 module board_pi_zero_w(){
-    x = 65.0; 
-    y = 30.0;
+    x = pi_x; 
+    y = pi_y;
     z = pi_pcb_thick;  // pcb thickness
     
-    thru_hole_diam = 2.5; 
-    thru_hole_offset = 3.5; // all holes are 3.5 mm from edges in both directions
     
     difference() {
     color("green") cube([x,y,z]); // primary board
+    pi_zero_thru_holes(x,y,z);
+    }
+    board_pi_zero_sdcard();
+    board_pi_zero_usb_pwr();
+}
+
+module pi_zero_thru_holes(x,y,z){
+    
+        thru_hole_diam = 2.5; 
+        thru_hole_offset = pi_thru_hole_offset; // all holes are 3.5 mm from edges in both directions
+
         translate([thru_hole_offset/2, thru_hole_offset/2,0])
             cylinder(r=thru_hole_diam/2,h=10,$fn=16);
         translate([x-thru_hole_offset/2, thru_hole_offset/2,0])
@@ -26,9 +42,6 @@ module board_pi_zero_w(){
             cylinder(r=thru_hole_diam/2,h=10,$fn=16);
         translate([x-thru_hole_offset/2, y-thru_hole_offset/2,0])
             cylinder(r=thru_hole_diam/2,h=10,$fn=16);
-    }
-    board_pi_zero_sdcard();
-    board_pi_zero_usb_pwr();
 }
 
 module board_pi_zero_sdcard(){
@@ -82,12 +95,9 @@ module SCD30_board(){
 /* this is the Plantower 2.5 particulate matter sensor
 */  
 module plantower_pm25(){
-    x = 21.15;
-    y = 30.8;
-    z = 50.025;
+    x = pm25_x;
+    y = pm25_y;
+    z = pm25_z;
     color("blue") cube([x,y,z]);
 }
 
-board_pi_zero_w();
-translate([60,35,0])rotate([0,0,90]) SCD30_board();
-translate([31,40,0]) rotate([0,0,90]) plantower_pm25();
