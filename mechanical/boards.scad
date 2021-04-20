@@ -4,8 +4,8 @@ pi_y = 30.0;
 pi_thru_hole_offset = 3.5; 
 
 pm25_x = 21.5; 
-pm25_y = 30.8;
-pm25_z = 50.025; 
+pm25_y = 38.25;
+pm25_z = 51.1; 
 
 inch2mm = 25.4;
 
@@ -32,15 +32,15 @@ module board_pi_zero_w(){
 module pi_zero_thru_holes(x,y,z){
     
         thru_hole_diam = 2.5; 
-        thru_hole_offset = pi_thru_hole_offset; // all holes are 3.5 mm from edges in both directions
+        thru_hole_offset = pi_thru_hole_offset; // all hole centers are 3.5 mm from edges in both directions
 
-        translate([thru_hole_offset/2, thru_hole_offset/2,0])
+        translate([thru_hole_offset, thru_hole_offset,0])
             cylinder(r=thru_hole_diam/2,h=10,$fn=16);
-        translate([x-thru_hole_offset/2, thru_hole_offset/2,0])
+        translate([x-thru_hole_offset, thru_hole_offset,0])
             cylinder(r=thru_hole_diam/2,h=10,$fn=16);
-        translate([thru_hole_offset/2, y-thru_hole_offset/2,0])
+        translate([thru_hole_offset, y-thru_hole_offset,0])
             cylinder(r=thru_hole_diam/2,h=10,$fn=16);
-        translate([x-thru_hole_offset/2, y-thru_hole_offset/2,0])
+        translate([x-thru_hole_offset, y-thru_hole_offset,0])
             cylinder(r=thru_hole_diam/2,h=10,$fn=16);
 }
 
@@ -73,7 +73,7 @@ module SCD30_board(){
     // original dimensions in inches
     x = 2.0*inch2mm;
     y = 1.0*inch2mm;
-    z = 2.0; // not too critical
+    z = 2.0; // mm not too critical
     
     // hole offsets are the same from each corner
     thru_hole_offset =  (1.0-0.8)/2 * inch2mm;
@@ -81,13 +81,13 @@ module SCD30_board(){
     
     difference(){
         color("blue") cube([x,y,z]);
-        translate([thru_hole_offset/2, thru_hole_offset/2,0])
+        translate([thru_hole_offset, thru_hole_offset,0])
             cylinder(r=thru_hole_diam/2,h=10,$fn=16);
-        translate([x-thru_hole_offset/2, thru_hole_offset/2,0])
+        translate([x-thru_hole_offset, thru_hole_offset,0])
             cylinder(r=thru_hole_diam/2,h=10,$fn=16);
-        translate([thru_hole_offset/2, y-thru_hole_offset/2,0])
+        translate([thru_hole_offset, y-thru_hole_offset,0])
             cylinder(r=thru_hole_diam/2,h=10,$fn=16);
-        translate([x-thru_hole_offset/2, y-thru_hole_offset/2,0])
+        translate([x-thru_hole_offset, y-thru_hole_offset,0])
             cylinder(r=thru_hole_diam/2,h=10,$fn=16);
     }
 }
