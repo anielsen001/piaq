@@ -1,0 +1,7 @@
+#+TITLE: Raspbery Pi zero based air quality sensor.
+
+Currently logs data to csv file on the sd-card. I used components from Adafruit and modeled my recording code based on their examples. 
+
+Records carbon dioxide, PM2.5, VOCs
+
+[[img/IMG_20210424_153425709.jpg]]
