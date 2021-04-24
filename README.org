@@ -1,6 +1,10 @@
 #+TITLE: Raspbery Pi zero based air quality sensor.
 
-Currently logs data to csv file on the sd-card. I used components from Adafruit and modeled my recording code based on their examples. 
+Very much a work in progress. 
+
+I wanted a flexible framework to monitor air quality, so I used a Raspberry Pi Zero-W mated to air quality breakouts from Adafruit. 
+
+Currently logs data to csv file on the sd-card. 
 
 Records carbon dioxide, PM2.5, VOCs
 
