@@ -1,0 +1,10 @@
+ [Unit]
+ Description=PiAQ logger
+ After=multi-user.target
+
+ [Service]
+ Type=idle
+ ExecStart=/home/pi/proj/piaq/start.sh > /home/pi/proj/piaq/startup.log 2>&1
+
+ [Install]
+ WantedBy=multi-user.target
