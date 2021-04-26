@@ -1,5 +1,6 @@
 #!/bin/sh
 
-. python/bin/activate
-python3 python/demo.py
+export PIAQ_DIR=/home/pi/proj/piaq
+. $PIAQ_DIR/python/bin/activate
+python3 $PIAQ_DIR/python/demo.py
 
