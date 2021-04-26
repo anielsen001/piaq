@@ -1,0 +1,18 @@
+#+TITLE: running at startup
+
+The logger can be set to run at system startup using systemd. This directory has a service file for the piaq service. Link this file into the systemd directory
+
+#+begin_src 
+ln -s piaq.service /lib/systemd/system/sample.service
+#+end_src
+
+Then enable the service
+
+#+begin_src
+sudo systemctl daemon-reload
+sudo systemctl enable piaq.service
+#+end_src
+
+* References
+
+https://www.dexterindustries.com/howto/run-a-program-on-your-raspberry-pi-at-startup/
