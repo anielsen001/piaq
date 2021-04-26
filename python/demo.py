@@ -44,7 +44,7 @@ with open(logfile,'w') as f:
                 'BMP280_Temp',
                 'BMP280_Pres',
                 'BMP280_Alt']
-    print( ','.join(msgparts))
+    #print( ','.join(msgparts))
     f.write(','.join(msgparts) + '\n')
         
 # sleep before starting to settle
