@@ -60,7 +60,7 @@ msgparts = ['# datetime',
             'BMP280_Temp',
             'BMP280_Pres',
             'BMP280_Alt']
-log.info(','.join(msgparts))
+datalogger.info(','.join(msgparts))
 
 """
 logfile = "/home/pi/log.csv"
@@ -104,7 +104,7 @@ while True:
                     str(bmp280.altitude) ]
 
         #print( ', '.join(msgparts))
-        log.info(','.join(msgparts))
+        datalogger.info(','.join(msgparts))
     except RuntimeError:
         # this occured when an invalid checksum was received from the PM2.5 sensor
         # we just skip the error and keep going
