@@ -32,12 +32,13 @@ sgp30.set_iaq_baseline(0x8973, 0x8AAE)
  
 
 logfile = "/home/pi/log.csv"
-"""
 with open(logfile,'a') as f:
-    msgparts = ['datetime',
+    msgparts = ['# datetime',
                 'eC02',
                 'TVOC',
+                'PM10',
                 'PM25',
+                'PM100',
                 'SCD30_CO2',
                 'SCD30_Temp',
                 'SCD30_RH',
@@ -46,7 +47,6 @@ with open(logfile,'a') as f:
                 'BMP280_Alt']
     #print( ','.join(msgparts))
     f.write(','.join(msgparts) + '\n')
-"""
 
 # sleep before starting to settle
 time.sleep(1)
@@ -60,7 +60,9 @@ with open(logfile,'a') as f:
             msgparts = [str(datetime.datetime.now()),
                 	str(sgp30.eCO2),
                     	str(sgp30.TVOC),
-                        str(pm25data["particles 25um"]),
+                        str(pm25data["pm10 standard"]),
+                        str(pm25data["pm25 standard"]),
+                        str(pm25data["pm100 standard"]),
                         str(scd.CO2),
                         str(scd.temperature),
                         str(scd.relative_humidity),
@@ -68,7 +70,7 @@ with open(logfile,'a') as f:
                         str(bmp280.pressure),
                         str(bmp280.altitude) ]
 
-            #print( ','.join(msgparts))
+            print( ', '.join(msgparts))
             f.write(','.join(msgparts) + '\n')
         except RuntimeError:
             # this occured when an invalid checksum was received from the PM2.5 sensor
