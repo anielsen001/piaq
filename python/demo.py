@@ -79,25 +79,6 @@ msgparts = ['# datetime',
             'BMP280_Alt']
 datalogger.debug(','.join(msgparts))
 
-"""
-logfile = "/home/pi/log.csv"
-with open(logfile,'a') as f:
-    msgparts = ['# datetime',
-                'eC02',
-                'TVOC',
-                'PM10',
-                'PM25',
-                'PM100',
-                'SCD30_CO2',
-                'SCD30_Temp',
-                'SCD30_RH',
-                'BMP280_Temp',
-                'BMP280_Pres',
-                'BMP280_Alt']
-    #print( ','.join(msgparts))
-    f.write(','.join(msgparts) + '\n')
-"""
-
 # sleep before starting to settle
 time.sleep(1)
 
@@ -119,8 +100,6 @@ while True:
                     str(bmp280.temperature),
                     str(bmp280.pressure),
                     str(bmp280.altitude) ]
-
-        #print( ', '.join(msgparts))
         datalogger.info(','.join(msgparts))
     except RuntimeError:
         # this occured when an invalid checksum was received from the PM2.5 sensor
@@ -130,16 +109,6 @@ while True:
         # this occured when the PM2.5 was not ready 
         # if we get an os error, just skip
         pass
-
-    #print("\nTemperature: %0.1f C" % bmp280.temperature)
-    #print("Pressure: %0.1f hPa" % bmp280.pressure)
-    #print("Altitude = %0.2f meters" % bmp280.altitude)
-
-    #print("CO2:", scd.CO2, "PPM")
-    #print("Temperature:", scd.temperature, "degrees C")
-    #print("Humidity:", scd.relative_humidity, "%%rH")   
-
-    #print("eCO2 = %d ppm \t TVOC = %d ppb" % (sgp30.eCO2, sgp30.TVOC))
 
     time.sleep(SAMPLE_PERIOD)
 
