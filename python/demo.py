@@ -18,7 +18,7 @@ datalogger.setLevel(logging.DEBUG)
 fh = logging.FileHandler("/home/pi/log.csv")
 fh.setLevel(logging.DEBUG)
 # create a formatter
-frmt = logging.Formatter('%(message)') # show only message
+frmt = logging.Formatter('%(message)s') # show only message
 fh.setFormatter(frmt)
 
 # add the handler t the logger
