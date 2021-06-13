@@ -1,5 +1,6 @@
 
 import logging
+from logging.handlers import TimedRotatingFileHandler
 
 import datetime
 import time
@@ -11,18 +12,34 @@ import adafruit_bmp280
 import adafruit_sgp30
 import adafruit_scd30
 
+DEBUG=False
+
+if DEBUG:
+    my_log_level = logging.DEBUG
+else:
+    my_log_level = logging.INFO
+
 # create logger for data
 datalogger = logging.getLogger('data logger')
-datalogger.setLevel(logging.DEBUG)
+datalogger.setLevel(my_log_level)
+
 # create a file handler
-fh = logging.FileHandler("/home/pi/log.csv")
-fh.setLevel(logging.DEBUG)
+fh = TimedRotatingFileHandler("/home/pi/log",when="midnight")
+fh.suffix = '%Y-%m-%d_%H-%M-%S.csv'
+fh.setLevel(logging.INFO)
 # create a formatter
 frmt = logging.Formatter('%(message)s') # show only message
 fh.setFormatter(frmt)
 
-# add the handler t the logger
+# add the handler to the logger
 datalogger.addHandler(fh)
+
+# create a screen handling for display in case of debugging
+if DEBUG:
+    sh = logging.StreamHandler()
+    sh.setLevel(my_log_level)
+    sh.setFormatter(frmt)
+    datalogger.addHandler(sh)
 
 # for pm2.5 sensor
 import serial
@@ -60,7 +77,7 @@ msgparts = ['# datetime',
             'BMP280_Temp',
             'BMP280_Pres',
             'BMP280_Alt']
-datalogger.info(','.join(msgparts))
+datalogger.debug(','.join(msgparts))
 
 """
 logfile = "/home/pi/log.csv"
