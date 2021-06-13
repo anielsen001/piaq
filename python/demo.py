@@ -15,6 +15,8 @@ uart = serial.Serial("/dev/ttyS0", baudrate=9600, timeout=0.25)
 from adafruit_pm25.uart import PM25_UART
 reset_pin = None
 pm25 = PM25_UART(uart, reset_pin)
+
+SAMPLE_PERIOD=10.0 # seconds
  
 # Create library object using our Bus I2C port
 i2c = busio.I2C(board.SCL, board.SDA)
@@ -91,4 +93,5 @@ with open(logfile,'a') as f:
 
         #print("eCO2 = %d ppm \t TVOC = %d ppb" % (sgp30.eCO2, sgp30.TVOC))
 
-        time.sleep(2)
+        time.sleep(SAMPLE_PERIOD)
+
