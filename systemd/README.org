@@ -1,17 +1,20 @@
 #+TITLE: running at startup
 
-The logger can be set to run at system startup using systemd. This directory has a service file for the piaq service. Link this file into the systemd directory
+The logger can be set to run at system startup using systemd. This directory has a service file for the piaq service. Link this file into the systemd directory. There is also a separate flask web service that will show the current readings.
 
 #+begin_src 
-ln -s piaq.service /lib/systemd/system/sample.service
+sudo ln -s $PWD/piaq.service /lib/systemd/system/piaq.service
+sudo ln -s $PWD/web.service /lib/systemd/system/web.service
 #+end_src
 
-Then enable the service
+Then enable the service on startup
 
 #+begin_src
 sudo systemctl daemon-reload
 sudo systemctl enable piaq.service
+sudo systemctl enable web.service
 #+end_src
+
 
 * References
 
