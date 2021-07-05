@@ -1,0 +1,10 @@
+ [Unit]
+ Description=PiAQ Web Server
+ After=multi-user.target
+
+ [Service]
+ Type=idle
+ ExecStart=/home/pi/proj/piaq/start-web.sh > /home/pi/proj/piaq/start-web.log 2>&1
+
+ [Install]
+ WantedBy=multi-user.target
