@@ -15,13 +15,25 @@ using PyPlot
 # the default pi timezone is BST (British summer time)
 # changed to US/Eastern in Early map
 filename = "2021-04-09-log.csv"
+filename = "log.2021-07-04_00-00-00.csv"
 
 dateformat= DateFormat("Y-m-d H:M:S.sss")
 
-function DateTimeMs(usstr)
-    DateTime(astimezone(ZonedDateTime(DateTime(SubString(usstr,1,length(usstr)-3),dateformat),tz"UTC"),tz"UTC-5"))
+"""
+Take a datetime string with microsecond precision, such as 
+2021-07-04 00:00:03.912410,
+convert to milliseconds to work with julia's time mechanisms and 
+convert from UTC to Eastern Timezone.
+
+"""
+function DateTimeMs(usstr; from_zone=tz"UTC", to_zone=tz"UTC-5")
+    DateTime(astimezone(ZonedDateTime(DateTime(SubString(usstr,1,length(usstr)-3),dateformat),from_zone),to_zone))
 end
 
+
+"""
+convert from celcisu to farenheit
+"""
 function celcius2farenheit(c)
     c*9/5+32
 end
@@ -31,7 +43,9 @@ df = CSV.read(filename,
               DataFrame)
 
 # https://stackoverflow.com/questions/64140373/convert-julia-data-frame-column-from-string-to-float
-transform!(df, :datetime => ByRow(x -> DateTimeMs(x)) => :dt)
+from_zone = tz"America/New_York"
+to_zone = tz"America/New_York"
+transform!(df, :datetime => ByRow(x -> DateTimeMs(x,from_zone=from_zone,to_zone=to_zone)) => :dt)
 
 figure()
 plot(df.dt, df.SCD30_CO2,label="SCD30")
