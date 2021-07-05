@@ -2,7 +2,8 @@ using CSV
 using DataFrames
 using Dates
 using TimeZones
-using PyPlot
+using Plots
+plotly()
 
 # this is the header that's not present in the file
 #datetime,eC02,TVOC,PM25,SCD30_CO2,SCD30_Temp,SCD30_RH,BMP280_Temp,BMP280_Pres,BMP280_Alt
@@ -32,7 +33,7 @@ end
 
 
 """
-convert from celcisu to farenheit
+convert from celcius to farenheit
 """
 function celcius2farenheit(c)
     c*9/5+32
