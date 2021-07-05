@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>PiAQ Main</title>
+</head>
+<body>
+
+<h1>Raspberry Pi Air Quality sensor</h1>
+<h2></h2>
+<p> Measures and logs air quality for VOCs, CO2 and Particulate matter.
+</p>
+<h2>Current Air Quality Readings: </h2>
+
+  <table>
+    {% set keys_to_display = ["datetime", "TVOC", "PM25", "SCD30_CO2", "SCD30_Temp", "SCD30_RH"] %}
+    {% for key in  keys_to_display  %}
+    <tr>
+          <th> {{ key }} </th>
+            <th> {{ readings[key] }} </td>
+    </tr>
+    {% endfor %}
+  </table>
+  </br>
+
+</body>
+</html>
