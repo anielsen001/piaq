@@ -9,6 +9,7 @@ plotly()
 
 log_file_name = ARGS[1]
 
+dateformat= DateFormat("Y-m-d H:M:S.sss")
 
 """
 Take a datetime string with microsecond precision, such as 
