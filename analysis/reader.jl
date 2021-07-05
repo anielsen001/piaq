@@ -27,7 +27,7 @@ function celcius2farenheit(c)
 end
          
 df = CSV.read(filename,
-              header=["datetime","eC02","TVOC","PM25","SCD30_CO2","SCD30_Temp","SCD30_RH","BMP280_Temp","BMP280_Pres","BMP280_Alt"],
+              header=["datetime","eC02","TVOC","PM10","PM25","PM100","SCD30_CO2","SCD30_Temp","SCD30_RH","BMP280_Temp","BMP280_Pres","BMP280_Alt"],
               DataFrame)
 
 # https://stackoverflow.com/questions/64140373/convert-julia-data-frame-column-from-string-to-float
