@@ -8,5 +8,5 @@ set ylabel "PPM"
 set grid
 set term png
 set xtics out rotate by -80
-set output 'log_co2.png'
-plot 'log' using 1:7
+set output '/home/pi/log_co2.png'
+plot '/home/pi/log' using 1:7
