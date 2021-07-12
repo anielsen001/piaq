@@ -54,6 +54,16 @@ def celcius_to_farenheit(c):
     """
     return c*9/5+32.0
 
+
+def make_plots():
+    p = Popen(["gnuplot", "/home/pi/proj/piaq/make_plot.p"])
+    res,err = p.communicate()
+    if err:
+        return err
+    else:
+        return 0
+
+
 @app.route("/")
 def main():
     header=["datetime","eC02","TVOC","PM10","PM25","PM100","SCD30_CO2","SCD30_Temp","SCD30_RH","BMP280_Temp","BMP280_Pres","BMP280_Alt"]
@@ -65,6 +75,8 @@ def main():
         temp_keys = ["SCD30_Temp", "BMP280_Temp"]
         for tk in temp_keys:
             readings[tk] = celcius_to_farenheit(float(readings[tk]))
+
+    make_plots()
     
     return render_template("main.html",readings=readings)
 
