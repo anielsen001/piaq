@@ -4,8 +4,9 @@ using CSV
 using DataFrames
 using Dates
 using TimeZones
-using Plots
-plotly()
+#using Plots
+#plotly()
+using Gaston
 
 log_file_name = ARGS[1]
 
