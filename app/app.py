@@ -56,8 +56,13 @@ def celcius_to_farenheit(c):
 
 
 def make_plots():
+    # make the plot
     p = Popen(["gnuplot", "/home/pi/proj/piaq/make_plot.p"])
     res,err = p.communicate()
+
+    # move the plot to templates
+    os.rename("/home/pi/log_co2.png", "/home/pi/proj/piaq/app/templates/log_co2.png")
+    
     if err:
         return err
     else:
