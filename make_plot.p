@@ -7,5 +7,6 @@ set xlabel "time"
 set ylabel "PPM"
 set grid
 set term png
+set xtics out rotate by -80
 set output 'log_co2.png'
-plot 'log' using 0:7
+plot 'log' using 1:7
