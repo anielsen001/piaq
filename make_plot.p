@@ -14,9 +14,9 @@ plot '/home/pi/log' using 1:7 notitle
 set output '/home/pi/log_pm.png'
 set title "PM"
 set ylabel "Count"
-plot '/home/pi/log' using 1:4 title "PM 1.0",\
+plot '/home/pi/log' using 1:6 title "PM 10.0",\
 '/home/pi/log' using 1:5 title "PM 2.5",\
-'/home/pi/log' using 1:6 title "PM 10.0"
+'/home/pi/log' using 1:4 title "PM 1.0"
 
 set output '/home/pi/log_temp.png'
 set title "Temperature"
