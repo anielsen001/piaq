@@ -62,6 +62,8 @@ def make_plots():
 
     # move the plot to templates
     os.rename("/home/pi/log_co2.png", "/home/pi/proj/piaq/app/static/log_co2.png")
+    os.rename("/home/pi/log_pm.png", "/home/pi/proj/piaq/app/static/log_pm.png")
+    os.rename("/home/pi/log_temp.png", "/home/pi/proj/piaq/app/static/log_temp.png")
     
     if err:
         return err
