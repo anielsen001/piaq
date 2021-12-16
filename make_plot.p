@@ -1,3 +1,6 @@
+# function to convert centigrade for farenheit
+c2f(c) = 9*c/5 + 32
+
 set datafile separator ","
 set timefmt "%Y-%m-%d %H:%M:%S"
 set xdata time
@@ -21,4 +24,4 @@ plot '/home/pi/log' using 1:6 title "PM 10.0",\
 set output '/home/pi/log_temp.png'
 set title "Temperature"
 set ylabel "Degrees"
-plot '/home/pi/log' using 1:8 notitle
+plot '/home/pi/log' using 1:(c2f($8)) notitle
