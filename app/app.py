@@ -70,6 +70,14 @@ def make_plots():
     else:
         return 0
 
+@app.route("/current")
+def current():
+    header=["datetime","eC02","TVOC","PM10","PM25","PM100","SCD30_CO2","SCD30_Temp","SCD30_RH","BMP280_Temp","BMP280_Pres","BMP280_Alt"]
+    current_sensor_reading = read_last_line(current_log_filename).split(',')
+
+    readings = dict(zip(header,current_sensor_reading))
+    
+    return readings
 
 @app.route("/")
 def main():
