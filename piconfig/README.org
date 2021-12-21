@@ -1,0 +1,8 @@
+#+TITLE: Raspberry Pi 0 W Configuration
+
+* Turn off the Pi's LED
+
+Add the following line to the crontab
+#+begin_src
+@reboot echo 0 | sudo tee /sys/class/leds/led0/brightness
+#+end_src
