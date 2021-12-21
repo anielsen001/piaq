@@ -1,10 +1,12 @@
-from flask import Flask, render_template, Response, request
+from flask import Flask, render_template, Response, request, session
 import sys
 import os
 import time
 import logging
 import socket
 from subprocess import Popen, PIPE
+
+PERMANENT_SESSION_LIFETIME = 1800
 
 # name of curent log file
 current_log_filename = "/home/pi/log"
@@ -70,6 +72,10 @@ def make_plots():
     else:
         return 0
 
+@app.route('/popsession')
+def popsession():
+    session.pop('Username', None)
+    
 @app.route("/current")
 def current():
     header=["datetime","eC02","TVOC","PM10","PM25","PM100","SCD30_CO2","SCD30_Temp","SCD30_RH","BMP280_Temp","BMP280_Pres","BMP280_Alt"]
